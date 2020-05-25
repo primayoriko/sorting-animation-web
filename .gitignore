@@ -1,0 +1,7 @@
+*.docx
+*.exe
+*.elf
+*.o
+*.pdf
+.vscode/
+node_modules/
