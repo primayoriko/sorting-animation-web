@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.main {
+  background-image: url("public/background.jpg");
+  height: 100%; /* You must set a specified height */
+  width: 100%;
+  position: absolute;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+.mainHeader {
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.mainBody {
+  margin-left: auto;
+  margin-right: auto;
+}
