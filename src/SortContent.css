@@ -1,16 +1,31 @@
 table {
-  width: 100%;
+  /* min-width: 80%; */
+  /* width: auto; */
   table-layout: fixed;
+  margin: 0 auto;
 }
 
 table tr td {
   text-align: left;
-  width: 50%;
+  width: 70%;
+  margin: 10px 10px;
+}
+
+.contents {
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .animateButton {
     padding: 15px 25px;
     color: white;
     background-color: rgb(30,30,30);
+}
+
+.sortDesc {
+  
 }
 

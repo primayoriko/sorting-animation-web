@@ -26,32 +26,36 @@
 
 .main {
   background-image: url("public/background.jpg");
-  height: 100%; /* You must set a specified height */
   width: 100%;
-  position: absolute;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  height: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
+  position: absolute;
+  overflow: auto;
   margin-left: auto;
   margin-right: auto;
+  display : flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;  
-  flex: 1;
-  flex-direction: row;
 }
 
 .mainHeader {
   width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: rgba(180,180,210,0.7);
+  height: 15%;
+  background-color: rgba(180,180,210,0.4);
+  padding: 8px 10px;
+  margin: 10px 20px;
 }
 
 .mainBody {
   width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+  min-height: 75%;
+  height: auto;
   background-color: rgba(220,220,220,0.5);
+  resize: both;
 }
 
 .title {
