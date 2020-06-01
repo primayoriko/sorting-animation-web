@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+table tr td {
+  text-align: left;
+  width: 50%;
+}
+
+.animateButton {
+    padding: 15px 25px;
+    color: white;
+    background-color: rgb(30,30,30);
+}
+

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SortOptions extends React.Component{
+class SortOptions2 extends React.Component{
     constructor(props){
         super(props);
         this.state = { elmtCount : 0 };
@@ -65,4 +65,4 @@ class Animation extends React.Component{
     }
 }
 
-export default SortOptions;
+export default SortOptions2;
