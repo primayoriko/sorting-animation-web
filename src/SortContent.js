@@ -100,12 +100,21 @@ class Animation extends React.Component{
     constructor(props){
         super(props);
         this.state = {values: [123,12,2,21,23,223,1,2,21,123,12,213,1]}
-
     }
 
     render(){
         return (
-            <div>
+            <div className="animation">
+                {
+                    this.state.values.map((val, idx) => {
+                        const elmt = (
+                            <div className="blockElmt" id={"elmt " + idx} style={{translateX: `${idx * 30}px`}}>
+                                {val}
+                            </div>
+                        )
+                        return elmt;
+                    })
+                }
             </div>
         );
     }
@@ -119,7 +128,6 @@ class SortContent extends React.Component {
     render(){
         return (
             <div className="contents">
-                {/* <p>asjdhasld</p> */}
                 <SortOptions />
                 <Animation />       
             </div>

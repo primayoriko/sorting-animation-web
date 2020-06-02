@@ -43,7 +43,7 @@
 }
 
 .mainHeader {
-  width: 60%;
+  width: 75%;
   height: 15%;
   background-color: rgba(180,180,210,0.4);
   padding: 8px 10px;
@@ -51,11 +51,12 @@
 }
 
 .mainBody {
-  width: 60%;
+  width: 75%;
   min-height: 75%;
   height: auto;
   background-color: rgba(220,220,220,0.5);
   resize: both;
+  /* position: relative; */
 }
 
 .title {
