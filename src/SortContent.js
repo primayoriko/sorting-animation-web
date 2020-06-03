@@ -93,7 +93,7 @@ class SortOptions extends React.Component{
 class Animation extends React.Component{
     constructor(props){
         super(props);
-        this.state = {values: [2,21,123,12,213,1,1,2,21,123], delay: 500,
+        this.state = {values: [21,1,123,12,8,12,1,2,221,123], delay: 1000,
                         explanation1: "", steps: 0, explanation2 : ""}
         this.bubbleSort = this.bubbleSort.bind(this);
         this.merge = this.merge.bind(this);
@@ -103,6 +103,7 @@ class Animation extends React.Component{
     componentDidMount(){
         // this.bubbleSort();
         this.mergeSort(this.state.values, 0);
+        this.setState({explanation1 : `Finish!`, explanation2 : ""});
     }
 
     // async swap(elmt1, elmt2){
@@ -120,12 +121,16 @@ class Animation extends React.Component{
         return promise;
     }
 
+    returnInput(input){
+        return input;
+    }
+
     async bubbleSort(){
         // const container = document.querySelector(".animation");
         const elmts = document.querySelectorAll(".blockElmt");
         for(let i = 0; i < this.state.values.length - 1; i += 1){
             for(let j = 0; j < this.state.values.length - i - 1; j += 1){
-                this.state.steps += 1;
+                this.setState({steps: this.state.steps + 1});
                 elmts[j].style.backgroundColor = "red";
                 elmts[j + 1].style.backgroundColor = "red";
                 const val1 = elmts[j].innerHTML;
@@ -174,22 +179,33 @@ class Animation extends React.Component{
     //     elmts[0].style.backgroundColor = "rgb(120,120,200)";
     // }
 
-    mergeSort(arr, startIdx){
+    async mergeSort(arr, startIdx){
         // Divide the array
         if(arr.length <= 1){
-            return arr
+            return new Promise((resolve) => {
+                resolve(arr);
+            });
         }
 
-        const middle = Math.floor(arr.length/2);
+        const middle = Math.ceil(arr.length/2);
         const leftArr = arr.slice(0, middle);
         const rightArr = arr.slice(middle);
 
-        return this.merge(this.mergeSort(leftArr, startIdx), this.mergeSort(rightArr, startIdx + middle), startIdx);
+        const result = await this.merge(await this.mergeSort(leftArr, startIdx).then(this.returnInput)
+                        , await this.mergeSort(rightArr, startIdx + middle).then(this.returnInput), startIdx)
+                        .then(this.returnInput);
+        // return result;
+        return new Promise((resolve) => {
+            resolve(result);
+        });
     }
 
-    merge(leftArr, rightArr, startIdx){
+    async merge(leftArr, rightArr, startIdx){
         // Conquering the array
-        const elmts = document.querySelectorAll(".blockElmt");
+        this.setState({steps: this.state.steps + 1});
+        this.setState({explanation1 : `Combining left subarray of ${leftArr.length} elements from index ${startIdx + 1} until index ${startIdx + leftArr.length}`});
+        this.setState({explanation2 : `and right subarray of ${rightArr.length} elements from index ${startIdx + leftArr.length + 1} until index ${startIdx + leftArr.length + rightArr.length}`});        
+        var elmts = document.querySelectorAll(".blockElmt");
         var result = [], leftIdx = 0, rightIdx = 0; 
         while(leftIdx < leftArr.length && rightIdx < rightArr.length){
             if(leftArr[leftIdx] < rightArr[rightIdx]){
@@ -202,12 +218,25 @@ class Animation extends React.Component{
         }
         result = result.concat(leftArr.slice(leftIdx), rightArr.slice(rightIdx));
         var tempArr = this.state.values;
-        for(let i = startIdx; i < result.length; i++){
-            tempArr[i] = result[i];
+        for(let i = 0; i < leftArr.length; i++){
+            elmts[i + startIdx].style.backgroundColor = "orange";
         }
-        for(let i = 0;i)
+        for(let i = leftArr.length; i < result.length; i++){
+            elmts[i + startIdx].style.backgroundColor = "yellow";
+        }
+        await this.frameTransition();
+        for(let i = 0; i < result.length; i++){
+            tempArr[i + startIdx] = result[i];
+            elmts[i + startIdx].style.backgroundColor = "red";
+        }
         this.setState({values: tempArr});
-        return result;
+        await this.frameTransition();
+        for(let i = 0; i < result.length; i++){
+            elmts[i + startIdx].style.backgroundColor = "rgb(120,200,120)";
+        }
+        return new Promise((resolve) => {
+            resolve(result);
+        });
     }
 
     render(){

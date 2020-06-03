@@ -1,27 +1,27 @@
 table {
-  /* min-width: 80%; */
   /* width: auto; */
-  table-layout: fixed;
-  margin: 0 auto;
+  /* table-layout: fixed; */
+  /* margin: 0 auto; */
 }
 
 table tr td {
   text-align: left;
   width: 70%;
-  margin: 10px 10px;
-  height: 20px;
+  /* margin: 10px 10px; */
+  height: 15px;
 }
 
 .contents {
   display: flex;
-  align-items: center;
+  /* align-items: center;
+  align-content: space-around; */
   justify-content: center;
-  align-content: space-around;
   flex-direction: column;
   resize: both;
-  overflow: vertical;
-  min-height: 550px;
+  overflow: auto;
+  min-height: 600px;
   height: auto;
+  padding-top: 0px;
   /* position: relative; */
 }
 
@@ -43,6 +43,7 @@ table tr td {
   align-content: center;
   height: 200px;
   width: 550px; 
+  margin-top: 25px;
   /* resize: both;
   overflow: auto; */
 }
