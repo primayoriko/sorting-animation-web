@@ -96,47 +96,49 @@ class Animation extends React.Component{
         this.state = {values: [2,21,123,12,213,1,1,2,21,123], delay: 500,
                         explanation1: "", steps: 0, explanation2 : ""}
         this.bubbleSort = this.bubbleSort.bind(this);
+        this.merge = this.merge.bind(this);
+        this.mergeSort = this.mergeSort.bind(this);
     }
 
     componentDidMount(){
-        this.bubbleSort();
+        // this.bubbleSort();
+        this.mergeSort(this.state.values, 0);
     }
 
     // async swap(elmt1, elmt2){
         
     // }
 
-    async bubbleSort(delay = 500){
-        const container = document.querySelector(".animation");
+    async frameTransition(){
+        const promise = new Promise((resolve) => {
+            window.requestAnimationFrame(() => {
+                setTimeout(() => {
+                    resolve();
+                }, this.state.delay);
+            });
+        });
+        return promise;
+    }
+
+    async bubbleSort(){
+        // const container = document.querySelector(".animation");
         const elmts = document.querySelectorAll(".blockElmt");
         for(let i = 0; i < this.state.values.length - 1; i += 1){
             for(let j = 0; j < this.state.values.length - i - 1; j += 1){
                 this.state.steps += 1;
                 elmts[j].style.backgroundColor = "red";
                 elmts[j + 1].style.backgroundColor = "red";
-
-                await new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve();
-                    }, delay);
-                });
-
                 const val1 = elmts[j].innerHTML;
                 const val2 = elmts[j + 1].innerHTML;
-                this.setState({explanation1 : `Comparing ${j} element and ${j + 1} element:\n ${val1} and ${val2}\n`});
+                this.setState({explanation1 : `Comparing element no. ${j + 1}  and element no. ${j + 2} :\n ${val1} and ${val2}\n`});
                 if(Number(val1) > Number(val2)){
-                    // elmts[j].style.backgroundColor = "red";
-                    // elmts[j + 1].style.backgroundColor = "red";
-                    await new Promise((resolve) => {
-                        window.requestAnimationFrame(() => {
-                            setTimeout(() => {
-                                resolve();
-                            }, 250);
-                        });
-                    });
+                    this.setState({explanation2 : `Element no. ${j + 1} > element no. ${j + 2}, then its swapped`});
+                    await this.frameTransition();
                     elmts[j].innerHTML = val2;
                     elmts[j + 1].innerHTML = val1;
-                    // container.insertBefore(elmts[j + 1], elmts[j]);
+                } else {
+                    this.setState({explanation2 : `${j + 1} element <= ${j + 2} element, then dont need to swap`});
+                    await this.frameTransition();
                 }
                 elmts[j].style.backgroundColor = "rgb(120,200,120)";
                 elmts[j + 1].style.backgroundColor = "rgb(120,200,120)";
@@ -144,6 +146,68 @@ class Animation extends React.Component{
             elmts[this.state.values.length - i - 1].style.backgroundColor = "rgb(120,120,200)";
         }
         elmts[0].style.backgroundColor = "rgb(120,120,200)";
+        this.setState({explanation1 : `Finished!\n`});
+        this.setState({explanation2 : ``});
+    }
+
+    //  async bubbleSort(){
+    //     // const container = document.querySelector(".animation");
+    //     const elmts = document.querySelectorAll(".blockElmt");
+    //     for(let i = 0; i < this.state.values.length - 1; i += 1){
+    //         for(let j = 0; j < this.state.values.length - i - 1; j += 1){
+    //             this.state.steps += 1;
+    //             elmts[j].style.backgroundColor = "red";
+    //             elmts[j + 1].style.backgroundColor = "red";
+    //             await this.frameTransition();
+    //             if(this.state.values[j] > this.state.values[j + 1]){
+    //                 let tempArr = this.state.values;
+    //                 let temp = tempArr[j];
+    //                 tempArr[j] = tempArr[j + 1];
+    //                 tempArr[j + 1] = temp;
+    //                 this.setState({values: tempArr});
+    //             }
+    //             elmts[j].style.backgroundColor = "rgb(120,200,120)";
+    //             elmts[j + 1].style.backgroundColor = "rgb(120,200,120)";
+    //         }
+    //         elmts[this.state.values.length - i - 1].style.backgroundColor = "rgb(120,120,200)";
+    //     }
+    //     elmts[0].style.backgroundColor = "rgb(120,120,200)";
+    // }
+
+    mergeSort(arr, startIdx){
+        // Divide the array
+        if(arr.length <= 1){
+            return arr
+        }
+
+        const middle = Math.floor(arr.length/2);
+        const leftArr = arr.slice(0, middle);
+        const rightArr = arr.slice(middle);
+
+        return this.merge(this.mergeSort(leftArr, startIdx), this.mergeSort(rightArr, startIdx + middle), startIdx);
+    }
+
+    merge(leftArr, rightArr, startIdx){
+        // Conquering the array
+        const elmts = document.querySelectorAll(".blockElmt");
+        var result = [], leftIdx = 0, rightIdx = 0; 
+        while(leftIdx < leftArr.length && rightIdx < rightArr.length){
+            if(leftArr[leftIdx] < rightArr[rightIdx]){
+                result.push(leftArr[leftIdx]);
+                leftIdx++;
+            } else {
+                result.push(rightArr[rightIdx]);
+                rightIdx++;
+            }
+        }
+        result = result.concat(leftArr.slice(leftIdx), rightArr.slice(rightIdx));
+        var tempArr = this.state.values;
+        for(let i = startIdx; i < result.length; i++){
+            tempArr[i] = result[i];
+        }
+        for(let i = 0;i)
+        this.setState({values: tempArr});
+        return result;
     }
 
     render(){
@@ -162,7 +226,9 @@ class Animation extends React.Component{
                 }
                 </div>
                 <div className="explanation">
-                    { this.state.explanation1 }
+                    <p> Step Count : {this.state.steps} </p>
+                    <p>{ this.state.explanation1 } </p>
+                    <p>{ this.state.explanation2 } </p>
                 </div>
                 {/* { this.bubbleSort(this.state.delay) } */}
             </div>
