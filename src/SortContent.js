@@ -84,12 +84,6 @@ class SortOptions extends React.Component{
                         </tr>
                     </tbody>
                 </table>
-                {/* <p> tHIS IS THE VALUES: </p>
-                {
-                    this.state.values.map((x) =>{
-                        return <p> {x} </p>;
-                    })
-                } */}
             </form>
         );
         return sortOptions;
@@ -99,12 +93,63 @@ class SortOptions extends React.Component{
 class Animation extends React.Component{
     constructor(props){
         super(props);
-        this.state = {values: [123,12,2,21,23,223,1,2,21,123,12,213,1]}
+        this.state = {values: [2,21,123,12,213,1,1,2,21,123], delay: 500,
+                        explanation1: "", steps: 0, explanation2 : ""}
+        this.bubbleSort = this.bubbleSort.bind(this);
+    }
+
+    componentDidMount(){
+        this.bubbleSort();
+    }
+
+    // async swap(elmt1, elmt2){
+        
+    // }
+
+    async bubbleSort(delay = 500){
+        const container = document.querySelector(".animation");
+        const elmts = document.querySelectorAll(".blockElmt");
+        for(let i = 0; i < this.state.values.length - 1; i += 1){
+            for(let j = 0; j < this.state.values.length - i - 1; j += 1){
+                this.state.steps += 1;
+                elmts[j].style.backgroundColor = "red";
+                elmts[j + 1].style.backgroundColor = "red";
+
+                await new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve();
+                    }, delay);
+                });
+
+                const val1 = elmts[j].innerHTML;
+                const val2 = elmts[j + 1].innerHTML;
+                this.setState({explanation1 : `Comparing ${j} element and ${j + 1} element:\n ${val1} and ${val2}\n`});
+                if(Number(val1) > Number(val2)){
+                    // elmts[j].style.backgroundColor = "red";
+                    // elmts[j + 1].style.backgroundColor = "red";
+                    await new Promise((resolve) => {
+                        window.requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                resolve();
+                            }, 250);
+                        });
+                    });
+                    elmts[j].innerHTML = val2;
+                    elmts[j + 1].innerHTML = val1;
+                    // container.insertBefore(elmts[j + 1], elmts[j]);
+                }
+                elmts[j].style.backgroundColor = "rgb(120,200,120)";
+                elmts[j + 1].style.backgroundColor = "rgb(120,200,120)";
+            }
+            elmts[this.state.values.length - i - 1].style.backgroundColor = "rgb(120,120,200)";
+        }
+        elmts[0].style.backgroundColor = "rgb(120,120,200)";
     }
 
     render(){
         return (
             <div className="animation">
+                <div className= "image">
                 {
                     this.state.values.map((val, idx) => {
                         const elmt = (
@@ -115,6 +160,11 @@ class Animation extends React.Component{
                         return elmt;
                     })
                 }
+                </div>
+                <div className="explanation">
+                    { this.state.explanation1 }
+                </div>
+                {/* { this.bubbleSort(this.state.delay) } */}
             </div>
         );
     }

@@ -9,18 +9,19 @@ table tr td {
   text-align: left;
   width: 70%;
   margin: 10px 10px;
+  height: 20px;
 }
 
 .contents {
   display: flex;
   align-items: center;
   justify-content: center;
-  align-content: center;
+  align-content: space-around;
   flex-direction: column;
   resize: both;
-  /* overflow: auto; */
-  /* min-height: 70%; */
-  /* height: 70%; */
+  overflow: vertical;
+  min-height: 550px;
+  height: auto;
   /* position: relative; */
 }
 
@@ -34,13 +35,27 @@ table tr td {
 
 }
 
-.animation {
+.animation{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+  align-content: center;
+  height: 200px;
+  width: 550px; 
+  /* resize: both;
+  overflow: auto; */
+}
+
+.image {
   display: flex;
   flex-direction: row;
   background-color: white;
   min-width: 80%;
   width: auto;
   padding: 20px 0px;
+  margin-top: 30px;
+  justify-content: space-around;
 }
 
 .blockElmt {
@@ -50,5 +65,12 @@ table tr td {
   padding: 0px 5px;
   margin: 5px 5px;
   text-align: center;
+}
+
+.explanation {
+  height: 150px;
+  width: 550px;
+  margin-top: 20px;
+  background-color: #CFCFCF;
 }
 
