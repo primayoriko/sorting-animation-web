@@ -1,6 +1,6 @@
 import React from 'react';
-import SortContent from './SortContent';
-import './App.css';
+import Content from './Content';
+import './static/style/App.css';
 
 function App() {
     return ( 
@@ -10,7 +10,7 @@ function App() {
                 <p> Place to simulate and understand sorting better... </p> 
             </div>
             <div className = "mainBody"> 
-                <SortContent />
+                <Content />
             </div>
         </div>
     );
