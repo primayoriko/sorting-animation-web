@@ -4,7 +4,7 @@ import './static/style/SettingForm.css';
 class SettingForm extends React.Component{
     constructor(props){
         super(props);
-        this.state = {values: [], description:""};
+        this.state = { data : [], delay : 0, sortType : "" };
         this.changeData = this.changeData.bind(this);
         this.changeDelay = this.changeDelay.bind(this);
         // this.changeSortType = this.changeSortType.bind(this);
@@ -28,10 +28,11 @@ class SettingForm extends React.Component{
         this.setState({ delay : event.target.value })
     }
 
-    transferData(){
+    transferData(event){
         this.props.changeData(this.state.data);
         this.props.changeDelay(this.state.delay);
         this.props.changeSortType(this.state.sortType);
+        event.preventDefault();
     }
 
     render(){

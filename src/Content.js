@@ -10,6 +10,7 @@ class Content extends React.Component {
 
     constructor(){
         super();
+        this.state = { data : [], delay : 0, sortType : "" };
         this.changeData = this.changeData.bind(this);
         this.changeDelay = this.changeDelay.bind(this);
         this.changeSortType = this.changeSortType.bind(this);
@@ -36,9 +37,9 @@ class Content extends React.Component {
                                     changeSortType={this.changeSortType}
                     />
                 </div>
-                <div>
+                {/* <div>
                     {this.state.data}
-                </div>
+                </div> */}
                 <div>
                     {this.state.delay}
                 </div>
