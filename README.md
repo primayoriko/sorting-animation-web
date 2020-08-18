@@ -1,3 +1,7 @@
+# Sorting Web App
+
+This web app is meant to simulate two type of sorting algorithm, that is bubble sort and merge sort.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
