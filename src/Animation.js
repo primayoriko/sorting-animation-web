@@ -201,7 +201,6 @@ class Animation extends React.Component{
                             );
                         })
                     }
-
                 </div>
                 <div className="explanation">
                     <p className="stepCount"> </p>
@@ -210,25 +209,13 @@ class Animation extends React.Component{
                 </div>
             </div>
         );
-
-        // return this.state.data.map((val, idx) => {
-        //     console.log(val);
-
-        //     return (
-        //         <div className="blockElmt" 
-        //                 id={"elmt " + idx} 
-        //                 style={{translateX: `${idx * 30}px`}}
-        //         >
-        //             {val}
-        //         </div>
-        //     );
-        // });
     }
 
     render(){
         console.log(this.state.data);
         console.log(this.state.delay);
         console.log(this.state.sortType);
+        
         if(!this.state.show){
             return (
                 <div className="animation">
