@@ -6,15 +6,22 @@ class Animation extends React.Component{
         super(props);
         this.state = { 
                         data : this.props.data, delay : this.props.delay, 
-                        sortType : this.props.sortType, show : false,
-                        explanation1: "", explanation2 : "" 
+                        sortType : this.props.sortType, show : false, turn : 0
                     };
         this.bubbleSort = this.bubbleSort.bind(this);
         this.merge = this.merge.bind(this);
         this.mergeSort = this.mergeSort.bind(this);
+        this.mergeSortInit = this.mergeSortInit.bind(this);
+        this.loadDataImg = this.loadDataImg.bind(this);
     }
 
     async componentDidUpdate(){
+        const elmts = document.querySelectorAll(".blockElmt");
+        for(let i = 0; i < this.state.data.length; i += 1){
+            // this.state.data[i] = parseInt(elmts[i].innerHTML);
+            console.log(elmts[i].innerHTML);
+        }
+
         if(this.state.show){
             if(this.state.sortType === "bubblesort" ||
                 this.state.sortType === "mergesort"){
@@ -33,7 +40,8 @@ class Animation extends React.Component{
             data : props.data,
             delay : props.delay,
             sortType : props.sortType,
-            show : true
+            show : true,
+            turn : (state.turn + 1) % 2
         }));
     }
 
@@ -82,6 +90,12 @@ class Animation extends React.Component{
             }
             elmts[this.state.data.length - i - 1].style.backgroundColor = "rgb(120,120,200)";
         }
+
+        // for(let i = 0; i < this.state.data.length; i += 1){
+        //     this.state.data[i] = parseInt(elmts[i].innerHTML);
+        // }
+        // console.log(this.state.data);
+
         elmts[0].style.backgroundColor = "rgb(120,120,200)";
         stepCount.innerHTML = "";
         explanation1.innerHTML = `Finished!\n`;
@@ -144,7 +158,6 @@ class Animation extends React.Component{
             }
         }
         result = result.concat(leftArr.slice(leftIdx), rightArr.slice(rightIdx));
-        // var tempArr = counter.data;
         for(let i = 0; i < leftArr.length; i++){
             elmts[i + startIdx].style.backgroundColor = "orange";
         }
@@ -157,13 +170,32 @@ class Animation extends React.Component{
             counter.data[i + startIdx] = result[i];
             elmts[i + startIdx].style.backgroundColor = "red";
         }
-        // this.setState({data: tempArr});
         await this.frameTransition();
         for(let i = 0; i < result.length; i++){
             elmts[i + startIdx].style.backgroundColor = "rgb(120,200,120)";
         }
         return new Promise((resolve) => {
             resolve(result);
+        });
+    }
+
+    loadDataImg(x){
+        if(x !== this.state.turn ){
+            return null;
+        }
+
+        return this.state.data.map((val, idx) => {
+            console.log(val);
+            // const elmt = 
+            // console.log(elmt.innerHTML);
+            return (
+                <div className="blockElmt" 
+                        id={"elmt " + idx} 
+                        style={{translateX: `${idx * 30}px`}}
+                >
+                    {val}
+                </div>
+            );
         });
     }
 
@@ -181,19 +213,8 @@ class Animation extends React.Component{
         return (
             <div className="animation">
                 <div className= "image">
-                {
-                    this.state.data.map((val, idx) => {
-                        const elmt = (
-                            <div className="blockElmt" 
-                                    id={"elmt " + idx} 
-                                    style={{translateX: `${idx * 30}px`}}
-                            >
-                                {val}
-                            </div>
-                        )
-                        return elmt;
-                    })
-                }
+                { this.loadDataImg(0) }
+                { this.loadDataImg(1) }
                 </div>
                 <div className="explanation">
                     <p className="stepCount"> </p>
