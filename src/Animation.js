@@ -12,7 +12,8 @@ class Animation extends React.Component{
         this.merge = this.merge.bind(this);
         this.mergeSort = this.mergeSort.bind(this);
         this.mergeSortInit = this.mergeSortInit.bind(this);
-        this.loadDataImg = this.loadDataImg.bind(this);
+        this.conditionalRender = this.conditionalRender.bind(this);
+        // this.loadDataImg = this.loadDataImg.bind(this);
     }
 
     async componentDidUpdate(){
@@ -179,24 +180,49 @@ class Animation extends React.Component{
         });
     }
 
-    loadDataImg(x){
+    conditionalRender(x){
         if(x !== this.state.turn ){
             return null;
         }
 
-        return this.state.data.map((val, idx) => {
-            console.log(val);
-            // const elmt = 
-            // console.log(elmt.innerHTML);
-            return (
-                <div className="blockElmt" 
-                        id={"elmt " + idx} 
-                        style={{translateX: `${idx * 30}px`}}
-                >
-                    {val}
+        return(
+            <div className="animation">
+                <div className= "image">
+                    {
+                        this.state.data.map((val, idx) => {
+                            console.log(val);
+                            return (
+                                <div className="blockElmt" 
+                                        id={"elmt " + idx} 
+                                        style={{translateX: `${idx * 30}px`}}
+                                >
+                                    {val}
+                                </div>
+                            );
+                        })
+                    }
+
                 </div>
-            );
-        });
+                <div className="explanation">
+                    <p className="stepCount"> </p>
+                    <p className="explanation1"> </p>
+                    <p className="explanation2"> </p>
+                </div>
+            </div>
+        );
+
+        // return this.state.data.map((val, idx) => {
+        //     console.log(val);
+
+        //     return (
+        //         <div className="blockElmt" 
+        //                 id={"elmt " + idx} 
+        //                 style={{translateX: `${idx * 30}px`}}
+        //         >
+        //             {val}
+        //         </div>
+        //     );
+        // });
     }
 
     render(){
@@ -212,15 +238,8 @@ class Animation extends React.Component{
 
         return (
             <div className="animation">
-                <div className= "image">
-                { this.loadDataImg(0) }
-                { this.loadDataImg(1) }
-                </div>
-                <div className="explanation">
-                    <p className="stepCount"> </p>
-                    <p className="explanation1"> </p>
-                    <p className="explanation2"> </p>
-                </div>
+                { this.conditionalRender(0) }
+                { this.conditionalRender(1) }
             </div>
         );
     }
