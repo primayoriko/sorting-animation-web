@@ -6,7 +6,7 @@ function App() {
     return ( 
         <div className = "main">
             <div className = "mainHeader">
-                <p className="title"> Sorting Simulator </p>
+                <p className="title"> <b>Sorting Simulator</b> </p>
                 <p> Place to simulate and understand sorting better... </p> 
             </div>
             <div className = "mainBody"> 

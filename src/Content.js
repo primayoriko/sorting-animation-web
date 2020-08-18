@@ -10,7 +10,7 @@ class Content extends React.Component {
 
     constructor(){
         super();
-        this.state = { data : [], delay : 0, sortType : "" };
+        this.state = { data : [], delay : 1000, sortType : "adsa" };
         this.changeData = this.changeData.bind(this);
         this.changeDelay = this.changeDelay.bind(this);
         this.changeSortType = this.changeSortType.bind(this);
@@ -25,10 +25,14 @@ class Content extends React.Component {
     }
 
     changeSortType(x){
-        this.setState({ sort : x });
+        this.setState({ sortType : x });
     }
 
     render(){
+        // console.log(this.state.data);
+        // console.log(this.state.delay);
+        // console.log(this.state.sortType);
+        
         return (
             <div className="contents">
                 <div>
@@ -37,19 +41,10 @@ class Content extends React.Component {
                                     changeSortType={this.changeSortType}
                     />
                 </div>
-                {/* <div>
-                    {this.state.data}
-                </div> */}
-                <div>
-                    {this.state.delay}
-                </div>
-                <div>
-                    {this.state.sort}
-                </div>
                 <div>
                     <Animation data={this.state.data}
                                 delay={this.state.delay}
-                                sortType={this.state.sort}
+                                sortType={this.state.sortType}
                     />       
                 </div>
             </div>

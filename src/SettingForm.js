@@ -4,7 +4,8 @@ import './static/style/SettingForm.css';
 class SettingForm extends React.Component{
     constructor(props){
         super(props);
-        this.state = { data : [], delay : 0, sortType : "" };
+        this.state = { data : this.props.data, delay : this.props.delay, 
+                        sortType : this.props.sortType };
         this.changeData = this.changeData.bind(this);
         this.changeDelay = this.changeDelay.bind(this);
         // this.changeSortType = this.changeSortType.bind(this);
@@ -25,7 +26,12 @@ class SettingForm extends React.Component{
     }
 
     changeDelay(event){
-        this.setState({ delay : event.target.value })
+        if(isNaN(event.target.value)){
+            this.setState({ delay : 1000 });
+        } 
+        else{
+            this.setState({ delay : event.target.value });
+        }
     }
 
     transferData(event){
@@ -48,14 +54,8 @@ class SettingForm extends React.Component{
                         <tr>
                             <td colSpan={3}> 
                                 <font color="#CFAFAF" style={{fontSize: "10.5px"}}>
-                                    (Separate it by a <b>';'</b>. It's recommended to insert at max. 10 numbers,
-                                </font>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={3}> 
-                                <font color="#CFAFAF" style={{fontSize: "10.5px"}}>
-                                    and  please insert value between 1 and 999, inclusive.)
+                                    (Separate it by a <b>';'</b>. It's recommended to insert at max. 10 numbers, 
+                                    and please insert value between 1 and 999, inclusive)
                                 </font>
                             </td>
                         </tr>
@@ -73,7 +73,7 @@ class SettingForm extends React.Component{
                                 <input colSpan={2} 
                                         type="radio" 
                                         name="count" 
-                                        onClick={ () => this.changeSortType("bubblesort") }
+                                        onChange={ () => this.changeSortType("bubblesort") }
                                 />
                                 Bubble Sort
                             </td>
@@ -84,7 +84,7 @@ class SettingForm extends React.Component{
                                 <input colSpan={2} 
                                         type="radio" 
                                         name="count"
-                                        onClick={ () => this.changeSortType("mergesort") } 
+                                        onChange={ () => this.changeSortType("mergesort") } 
                                 />
                                 Merge Sort
                             </td>
@@ -103,6 +103,13 @@ class SettingForm extends React.Component{
                                         name="values" 
                                         onChange={this.changeDelay} 
                                 />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={1}> 
+                                <font color="#CFAFAF" style={{fontSize: "10.5px"}}>
+                                    (the default is 1000 ms)
+                                </font>
                             </td>
                         </tr>
                         <tr>

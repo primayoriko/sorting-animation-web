@@ -1,19 +1,48 @@
 import React from 'react';
+import './static/style/Animation.css';
 
 class Animation extends React.Component{
+    // state = { 
+    //     data : [], delay : 0, 
+    //     sortType : "", show : true,
+    //     explanation1: "", steps: 0, explanation2 : "" 
+    // };
+
     constructor(props){
         super(props);
-        this.state = { data : [21,1,123,12,8,12,1,2,221,123], delay : 1000, sortType : "",
-                        explanation1: "", steps: 0, explanation2 : "", show : false };
+        this.state = { 
+                        data : this.props.data, delay : this.props.delay, 
+                        sortType : this.props.sortType, show : true,
+                        explanation1: "", steps: 0, explanation2 : "" 
+                    };
         this.bubbleSort = this.bubbleSort.bind(this);
         this.merge = this.merge.bind(this);
         this.mergeSort = this.mergeSort.bind(this);
     }
 
-    componentDidMount(){
-        // this.bubbleSort();
-        this.mergeSort(this.state.data, 0);
-        this.setState({explanation1 : `Finish!`, explanation2 : ""});
+    // componentDidUpdate(){
+    //     if(this.state.show){
+    //         if(this.state.sortType === "bubblesort" ||
+    //             this.state.sortType === "mergesort"){
+    //             if(this.state.sortType === "bubblesort"){
+    //                 this.bubbleSort();
+    //             }
+    //             else if(this.state.sortType === "mergesort"){
+    //                 this.mergeSort(this.state.data, 0);
+    //             }
+    //             this.setState({explanation1 : `Finish!`, explanation2 : ""});
+    //         }
+    //     } else {
+    //         this.setState({ show : true });
+    //     }
+    // }
+
+    async componentWillReceiveProps(){
+        await this.setState((state, props) => ({
+            data : props.data,
+            delay : props.delay,
+            sortType : props.sortType
+        }));
     }
 
     async frameTransition(){
@@ -146,11 +175,15 @@ class Animation extends React.Component{
     }
 
     render(){
-        // if(!this.state.show){
-        //     return (
-        //         <div> </div>
-        //     );
-        // }
+        console.log(this.state.data);
+        console.log(this.state.delay);
+        console.log(this.state.sortType);
+        if(!this.state.show){
+            return (
+                <div className="animation">
+                </div>
+            );
+        }
 
         return (
             <div className="animation">
@@ -158,7 +191,10 @@ class Animation extends React.Component{
                 {
                     this.state.data.map((val, idx) => {
                         const elmt = (
-                            <div className="blockElmt" id={"elmt " + idx} style={{translateX: `${idx * 30}px`}}>
+                            <div className="blockElmt" 
+                                    id={"elmt " + idx} 
+                                    style={{translateX: `${idx * 30}px`}}
+                            >
                                 {val}
                             </div>
                         )
@@ -171,9 +207,24 @@ class Animation extends React.Component{
                     <p>{ this.state.explanation1 } </p>
                     <p>{ this.state.explanation2 } </p>
                 </div>
-                {/* { this.bubbleSort(this.state.delay) } */}
             </div>
         );
+        // return (
+        //     <div>
+        //         <div>
+        //             {this.state.data}
+        //             <p>------+++++++------</p>
+        //         </div>
+        //         <div>
+        //             {this.state.delay}
+        //             <p>------========------</p>
+        //         </div>
+        //         <div>
+        //             {this.state.sortType}
+        //             <p>-------------------</p>
+        //         </div>
+        //     </div>
+        // );
     }
 }
 
