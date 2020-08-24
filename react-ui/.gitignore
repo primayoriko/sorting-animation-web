@@ -1,0 +1,8 @@
+*.docx
+*.exe
+*.elf
+*.o
+*.pdf
+src/sorting_template.html
+.vscode/
+node_modules/
