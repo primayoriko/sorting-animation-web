@@ -1,7 +1,7 @@
 # Node build artifacts
 node_modules
-view/node_modules
 npm-debug.log
+# react-ui/node_modules
 
 # Local development
 *.env
