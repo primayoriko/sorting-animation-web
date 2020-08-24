@@ -24,7 +24,7 @@ This is library and buildpack that I used for making and deploying (in [Heroku](
 ---------
 
 1. Open your terminal
-2. Navigate to **view** folder
+2. Navigate to **react-ui** folder
 3. If you haven't installed the module yet (this step only for first execution/one-time setup), execute this script
 
         npm build
