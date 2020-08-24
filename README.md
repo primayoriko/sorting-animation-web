@@ -1,72 +1,51 @@
 # Sorting Web App
 
-This web app is meant to simulate two type of sorting algorithm, that is bubble sort and merge sort.
+This web app is meant to simulate two type of sorting algorithm, that is [bubble sort](https://www.geeksforgeeks.org/bubble-sort/) and [merge sort](https://www.geeksforgeeks.org/merge-sort/). This project was already deployed [here](https://sort-web.herokuapp.com).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## App Requirement
 
-## Available Scripts
+---------
+This is every applications that mainly used to use and develop this project
 
-In the project directory, you can run:
+1. [Node.js](https://nodejs.org/en/), I personally used v10.16.0
+2. Browser, such as (and recommended too) latest edition of Chrome or Firefox.
+3. IDE or text editor to develop the application, such as [Visual Studio Code](https://code.visualstudio.com/) and [Atom](https://atom.io/).
 
-### `npm start`
+## Library & Buildpack Used
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---------
+This is library and buildpack that I used for making and deploying (in [Heroku](https://heroku.com)) this project
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. [React.js](https://reactjs.org/), as Frontend Framework
+2. [heroku-cra-node](https://github.com/mars/heroku-cra-node), as buildpack/helper to deploy to Heroku
 
-### `npm test`
+## How to Run
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---------
 
-### `npm run build`
+1. Open your terminal
+2. Navigate to **view** folder
+3. If you haven't installed the module yet (this step only for first execution/one-time setup), execute this script
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+        npm build
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+4. Execute this script
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        npm start
 
-### `npm run eject`
+5. Open the link in [localhost](127.0.0.1:3000) with the specified port (the default port is 3000)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## How to Use
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Type the number that you want to sort, but you must remember this
+   1. The number must in range 1 and 999, inclusive.
+   2. The numbers you input at must 10 numbers, of course greater than zero.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+   with each number separated by **;** .
+2. Choose the sorting method, bubble or merge.
+3. Input the animation delay (in milisecond(s)), must greater that zero.
+4. Click **Simulate!** button.
+5. Watch the animation and explanation below the option form.
+6. If you wath to change or rewatch the animation (you could interrupt the sorting process, too), repeat the step from 1 until 4.
