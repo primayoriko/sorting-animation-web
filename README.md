@@ -24,7 +24,7 @@ This is library and buildpack that I used for making and deploying (in [Heroku](
 ---------
 
 1. Open your terminal
-2. Navigate to **react-ui** folder
+2. Navigate to **view** folder
 3. If you haven't installed the module yet (this step only for first execution/one-time setup), execute this script
 
         npm build
@@ -41,11 +41,11 @@ This is library and buildpack that I used for making and deploying (in [Heroku](
 
 1. Type the number that you want to sort, but you must remember this
    1. The number must in range 1 and 999, inclusive.
-   2. The numbers you input at must 10 numbers, of course greater than zero.
+   2. The numbers you input at most 10 numbers, and of course it is must be greater than zero.
 
    with each number separated by **;** .
 2. Choose the sorting method, bubble or merge.
-3. Input the animation delay (in milisecond(s)), must greater that zero.
+3. Input the animation delay (in milisecond(s)), and also remember that the number must be greater that zero.
 4. Click **Simulate!** button.
 5. Watch the animation and explanation below the option form.
 6. If you wath to change or rewatch the animation (you could interrupt the sorting process, too), repeat the step from 1 until 4.
