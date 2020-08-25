@@ -1,6 +1,6 @@
 {
-  "name": "heroku-cra-node",
-  "description": "web app made of create-react-app UI + Node API",
+  "name": "sorting-web-app",
+  "description": "Web app that shows us sorting with bubble and merge sort",
   "scripts": {
   },
   "env": {
