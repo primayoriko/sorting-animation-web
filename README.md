@@ -1,4 +1,4 @@
-# Sorting Web App
+# Sorting Animation Web App
 
 This web app is meant to simulate two type of sorting algorithm, that is [bubble sort](https://www.geeksforgeeks.org/bubble-sort/) and [merge sort](https://www.geeksforgeeks.org/merge-sort/). This project was already deployed [here](https://sort-web.herokuapp.com).
 
